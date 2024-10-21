@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN UP</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/css/sign_up_css.css' %}">
+
+
+    <link rel="icon " href="{% static 'MyAppStatic/media/register_icon.png' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+    </style>
+</head>
+<body>
+<div class="all_content">
+    <div class="text_div">
+        <h2>SIGN UP</h2>
+        <img src="{% static 'MyAppStatic/media/register_icon.png' %}" height="30px" width="30px">
+    </div>
+    <div class="form_div">
+        {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+           <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+       <form method="post" autocomplete="off">
+           {% csrf_token %}
+           <div class="inputs_div">
+               <label for="firstname">First Name :</label>
+               <input type="text" id="firstname" name="firstname" placeholder="Enter your first name">
+               {% if errors.first_name %}
+               <span class="error">{{ errors.first_name }}</span>
+               {% endif %}
+
+
+               <label for="lastname">Last Name :</label>
+               <input type="text" id="lastname" name="lastname" placeholder="Enter your last name">
+               {% if errors.last_name %}
+               <span class="error">{{ errors.last_name }}</span>
+               {% endif %}
+
+
+               <label for="email">Email :</label>
+               <input type="email" id="email" name="email" placeholder="Enter your email">
+               {% if errors.email %}
+               <span class="error">{{ errors.email }}</span>
+               {% endif %}
+
+
+
+
+               <label for="username">User Name :</label>
+               <input type="text" id="username" name="username" placeholder="Enter your user name">
+               {% if errors.username %}
+               <span class="error">{{ errors.username }}</span>
+               {% endif %}
+
+
+
+               <label for="password">Password :</label>
+               <input type="password" id="password" name="password" placeholder="Enter your password">
+               {% if errors.password %}
+               <span class="error">{{ errors.password }}</span>
+               {% endif %}
+
+
+
+              <input type="submit" value="Sign Up Me !" id="submit">
+           </div>
+           <div class="sign_in">
+               <a href="{% url 'sign_in' %}">I want to sign in </a>
+           </div>
+       </form>
+    </div>
+</div>
+</body>
+</html>
